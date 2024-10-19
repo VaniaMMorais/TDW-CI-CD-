@@ -1,16 +1,16 @@
-import { render } from '@testing-library/react';
-import DateComponent from '../app/date'; // Ajusta o caminho conforme necessário
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import DateComponent from '../app/date'; // Certifica-te de que o caminho está correto
 import { format } from 'date-fns';
 
 test('renders the date in the correct format', () => {
-  const testDate = '2024-10-16T12:34:56Z';
-  
+  // Define uma data de teste
+  const testDate = '2024-10-19';
+
   // Renderiza o componente com a data de teste
-  const { getByText } = render(<DateComponent dateString={testDate} />);
+  render(<DateComponent dateString={testDate} />);
 
   // Verifica se a data formatada é exibida corretamente
-  const formattedDate = format(new Date(testDate), 'LLLL d, yyyy'); // Usa o mesmo formato do componente
-
-  // Testa se a data formatada aparece no documento
-  expect(getByText(formattedDate)).toBeInTheDocument();
+  const formattedDate = format(new Date(testDate), 'LLLL d, yyyy');
+  expect(screen.getByText(formattedDate)).toBeInTheDocument();
 });
