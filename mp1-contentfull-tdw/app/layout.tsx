@@ -1,3 +1,4 @@
+import React from 'react';
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { CMS_NAME } from "@/lib/constants";
