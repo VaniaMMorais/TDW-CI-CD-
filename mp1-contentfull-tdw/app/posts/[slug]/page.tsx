@@ -12,6 +12,11 @@ import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
 export async function generateStaticParams() {
   const allPosts = await getAllPosts(false);
 
+  if (!allPosts || allPosts.length === 0) {
+    console.error('No posts found');
+    return [];
+  }
+
   return allPosts.map((post) => ({
     slug: post.slug,
   }));
