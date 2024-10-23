@@ -50,3 +50,15 @@ jobs:
         run: |
           cd mp1-contentfull-tdw
           npm test
+
+      - name: Build the project
+        run: |
+          cd mp1-contentfull-tdw
+          npm run build
+        if: success()
+
+      - name: Deploy to Netlify
+        run: |
+          cd mp1-contentfull-tdw
+          npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+        if: success()
