@@ -1,3 +1,4 @@
+import React from 'react';
 import ContentfulImage from "../lib/contentful-image";
 import Link from "next/link";
 

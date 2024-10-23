@@ -1,3 +1,4 @@
+import React from 'react';
 import ContentfulImage from "@/lib/contentful-image";
 
 export default function Avatar({
