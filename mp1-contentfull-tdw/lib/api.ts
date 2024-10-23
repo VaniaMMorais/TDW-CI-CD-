@@ -1,3 +1,4 @@
+import React from 'react';
 const POST_GRAPHQL_FIELDS = `
   slug
   title
