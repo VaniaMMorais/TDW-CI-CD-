@@ -1,0 +1,52 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - '**' # Executa a pipeline em todos os commits em todas as branches
+  schedule:
+    - cron: "0 0 * * 1-5" # Executa às 00:00 de todos os dias da semana
+  workflow_dispatch: # Permite que a pipeline seja acionada manualmente
+  repository_dispatch: # Webhook para quando o CMS for atualizado
+    types:
+      - cms-updated
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Configuração do Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+
+      # Definir o diretório de trabalho como 'mp1-contentfull-tdw' para instalar dependências
+      - name: Install dependencies
+        run: |
+          cd mp1-contentfull-tdw
+          npm install
+
+      # Usar o lint
+      - name: Run lint
+        run: |
+              cd mp1-contentfull-tdw
+              npm run lint
+
+      # Usar o prettier
+      - name: Run prettier
+        run: |
+              cd mp1-contentfull-tdw
+              npm run prettier
+
+      # Executar os testes dentro do diretório 'mp1-contentfull-tdw'
+      - name: Run tests
+        run: |
+          cd mp1-contentfull-tdw
+          npm test
