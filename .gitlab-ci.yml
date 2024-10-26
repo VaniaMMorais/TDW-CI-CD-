@@ -9,7 +9,6 @@ variables:
   CONTENTFUL_PREVIEW_SECRET: $CONTENTFUL_PREVIEW_SECRET
   CONTENTFUL_REVALIDATE_SECRET: $CONTENTFUL_REVALIDATE_SECRET
 
-
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
@@ -25,12 +24,12 @@ run_tests:
     - npm run lint
     - npm run prettier
     - npm test
-  only:
-    - main
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
 
 build:
   stage: build
   script:
     - npm run build
-  only:
-    - main
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
