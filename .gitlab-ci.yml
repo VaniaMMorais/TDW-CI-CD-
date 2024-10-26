@@ -2,6 +2,8 @@ stages:
   - test
   - build
 
+image: node:20
+
 variables:
   CONTENTFUL_SPACE_ID: $CONTENTFUL_SPACE_ID
   CONTENTFUL_ACCESS_TOKEN: $CONTENTFUL_ACCESS_TOKEN
