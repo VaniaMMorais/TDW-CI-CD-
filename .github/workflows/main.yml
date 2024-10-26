@@ -5,7 +5,7 @@ on:
     branches:
       - '**' # Executa a pipeline em todos os commits em todas as branches
   schedule:
-    - cron: "0 0 * * 1-5" # Executa às 00:00 de todos os dias da semana
+    - cron: "0 0 * * 1-5" # Executa às 00:00 de todos os dias de segunda a sexta
   workflow_dispatch: # Permite que a pipeline seja acionada manualmente
   repository_dispatch: # Webhook para quando o CMS for atualizado
     types:
@@ -16,6 +16,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Cache Node.js modules
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+    
       # Checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -27,7 +36,7 @@ jobs:
           node-version: '20'
 
 
-      # Definir o diretório de trabalho como 'mp1-contentfull-tdw' para instalar dependências
+      # Instalar dependências
       - name: Install dependencies
         run: |
           cd mp1-contentfull-tdw
@@ -45,7 +54,7 @@ jobs:
               cd mp1-contentfull-tdw
               npm run prettier
 
-      # Executar os testes dentro do diretório 'mp1-contentfull-tdw'
+      # Executar os testes 
       - name: Run tests
         run: |
           cd mp1-contentfull-tdw
