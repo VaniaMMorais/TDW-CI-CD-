@@ -1,9 +1,4 @@
-# Project Evolution
-    - Consigo correr run lint sem dar erros
-    - Run prettier funciona
-    - Testes jest completos
-    - Sonar Cloud 
-
-# TODO
-    - Dar deploy
-    - Fazer pipeline
+# Mini Projeto TDW (CI/CD)
+Projeto feito no âmbito da cadeira de Tecnologias e Desenvolvimento Web
+Link Netlify: https://avaliacao-tdw-vania-morais.netlify.app/
+Link Relatório: https://drive.google.com/file/d/1U00a1uTmvsVLj_wwif0WYjAeqtxd-NUC/view?usp=sharing
