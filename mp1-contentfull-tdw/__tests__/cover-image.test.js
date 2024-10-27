@@ -8,7 +8,7 @@ test("renders the CoverImage with title and link", () => {
   const mockSlug = "sample-post";
 
   const { getByAltText } = render(
-    <CoverImage title={mockTitle} url={mockUrl} slug={mockSlug} />,
+    <CoverImage title={mockTitle} url={mockUrl} slug={mockSlug} />,  // Definição dos dados simulados
   );
 
   // Verifica se a imagem é renderizada

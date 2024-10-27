@@ -7,7 +7,7 @@ import {
 // Mock da função fetch
 global.fetch = jest.fn();
 
-const mockPostData = {
+const mockPostData = {   // Simula um post em JSON da API Contentful
   data: {
     postCollection: {
       items: [
@@ -57,9 +57,9 @@ describe("Contentful API", () => {
 
     const posts = await getAllPosts(false);
 
-    expect(posts).toHaveLength(1);
-    expect(posts[0].slug).toBe("test-post");
-    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(posts).toHaveLength(1);    // verifica que só existe 1 post
+    expect(posts[0].slug).toBe("test-post"); // verifica que se o slug está correto
+    expect(fetch).toHaveBeenCalledTimes(1);  // asssegura que o fetch só foi feito 1 vez
   });
 
   it("fetches a post and more posts", async () => {
@@ -73,10 +73,10 @@ describe("Contentful API", () => {
 
     const { post, morePosts } = await getPostAndMorePosts("test-post", false);
 
-    expect(post.slug).toBe("test-post");
-    expect(morePosts).toHaveLength(1);
-    expect(morePosts[0].slug).toBe("test-post");
-    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(post.slug).toBe("test-post");  // Testa o slug do post principal
+    expect(morePosts).toHaveLength(1);    // Verifica se efetivamente existe +1 post
+    expect(morePosts[0].slug).toBe("test-post"); // verifica se o slug está correto
+    expect(fetch).toHaveBeenCalledTimes(2);      // verifica se foram feitas 2 chamadas à API (2 posts)
   });
 
   it("fetches a preview post by slug", async () => {
@@ -85,9 +85,9 @@ describe("Contentful API", () => {
       json: jest.fn().mockResolvedValue(mockPostData),
     });
 
-    const post = await getPreviewPostBySlug("test-post");
+    const post = await getPreviewPostBySlug("test-post");  //esta função vai buscar o post pelo slug
 
-    expect(post.slug).toBe("test-post");
-    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(post.slug).toBe("test-post"); // verifica se o slug do post é o esperado
+    expect(fetch).toHaveBeenCalledTimes(1); //verifica se só chamou a API 1 vez
   });
 });

@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import MoreStories from "../app/more-stories"; // O componente que contém PostPreview
+import MoreStories from "../app/more-stories";
 
-test("renders MoreStories with posts", () => {
+test("renders MoreStories with posts", () => {  //Mock de um post
   const mockPosts = [
     {
       title: "Sample Post",
@@ -17,19 +17,17 @@ test("renders MoreStories with posts", () => {
     },
   ];
 
-  // Render the MoreStories component with mock posts
-  render(<MoreStories morePosts={mockPosts} />);
+  render(<MoreStories morePosts={mockPosts} />);   //Renderiza o componente MoreStories
 
-  // Check if the title is rendered
-  const titleLink = screen.getByText("Sample Post");
+  const titleLink = screen.getByText("Sample Post"); //Verifica se o título aparece no ecrã
   expect(titleLink).toBeInTheDocument();
-  expect(titleLink).toHaveAttribute("href", "/posts/sample-post");
+  expect(titleLink).toHaveAttribute("href", "/posts/sample-post"); //Verifica que o link direciona para o slug correto
 
   // Check if the excerpt is rendered
-  const excerpt = screen.getByText("This is a sample excerpt of the post.");
+  const excerpt = screen.getByText("This is a sample excerpt of the post.");  //Verifica se o excerpt do post é renderizado corretamente
   expect(excerpt).toBeInTheDocument();
 
   // Check if the author's avatar is rendered
-  const authorAvatar = screen.getByAltText("John Doe");
+  const authorAvatar = screen.getByAltText("John Doe"); //Verifica se a imagem do autor é exibida juntamente com o nome dele
   expect(authorAvatar).toBeInTheDocument();
 });

@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import Avatar from "../app/avatar";
 
-// Mocking the ContentfulImage component
+// Mock do componente Avatar
 jest.mock("@/lib/contentful-image", () => ({
   __esModule: true,
   default: ({ alt, src, width, height }) => (
@@ -15,13 +15,12 @@ test("renders Avatar with name and picture", () => {
   const mockPicture = { url: "http://example.com/avatar.jpg" };
 
   const { getByText, getByAltText } = render(
-    <Avatar name={mockName} picture={mockPicture} />,
+    <Avatar name={mockName} picture={mockPicture} />,    //Definição dos dados simulados
   );
 
-  // Check if the name is rendered
-  expect(getByText(mockName)).toBeInTheDocument();
+  expect(getByText(mockName)).toBeInTheDocument();  // Verifica se o nome é exibido corretamente
 
-  // Check if the image is rendered with the correct alt attribute
+  // Verifica se a imagem é renderizada com os atributos corretos
   const image = getByAltText(mockName);
   expect(image).toBeInTheDocument();
   expect(image).toHaveAttribute("src", mockPicture.url);

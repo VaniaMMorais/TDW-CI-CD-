@@ -2,8 +2,8 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "jsdom", // Para testes de componentes React ou DOM
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/$1",
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    "^@/(.*)$": "<rootDir>/$1",  //Mapeia a root 
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy", //Mapeia os arquivos css
   },
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"], // Extensões de ficheiros a serem testadas
   transform: {
